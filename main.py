@@ -48,10 +48,10 @@ def main():
 
     game_start = time()
     while not logik.win:
-        printer.print_line()
-        printer.print_game(logik.history)
-        printer.print_line()
         if player_type == 1:
+            printer.print_line()
+            printer.print_game(logik.history)
+            printer.print_line()
             printer.print(f"Zadej kombinaci s {positions_count} pozicemi oddělenými mezerou: (platné hodnoty 1-{colors_count})")
             player.set_next_combination(reader.read_combination(positions_count, colors_count))
         logik.next_turn()

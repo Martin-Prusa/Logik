@@ -1,4 +1,6 @@
 import random
+import math
+from itertools import permutations
 
 class AutoPlayer:
     def __init__(self, positions_count, colors_count):
@@ -6,11 +8,34 @@ class AutoPlayer:
         self.colors_count = colors_count
         self.sorted_combination = [1] * positions_count
         self.change_index = 0
+        self.permutations = None
+        self.invalid_permutations = []
 
     def get_correct_sorted_combination(self, history):
-       l = self.sorted_combination.copy()
-       random.shuffle(l)
-       return l
+        if self.permutations is None:
+            self.permutations = permutations(self.sorted_combination)
+            self.valid_permutations = [True] * math.factorial(self.positions_count)
+        
+        for i, permutation in enumerate(self.permutations):
+            if i in self.invalid_permutations:
+                continue
+            
+            valid = True
+            for h in history:
+                sequence, correct_positions, correct_colors = h[0], h[1][0], h[1][1]
+
+                correct_positions_count = sum(1 for i in range(len(sequence)) if i < len(permutation) and sequence[i] == permutation[i])
+
+                if correct_positions_count != correct_positions:
+                    self.invalid_permutations.append(i)
+                    valid = False
+                    break
+            
+            if valid:
+                return permutation
+
+        return None
+               
 
     def get_next_combination(self, history):
         if len(history) == 0:
@@ -18,7 +43,12 @@ class AutoPlayer:
         
         self.change_index = history[-1][1][0] + history[-1][1][1]
 
+        if self.change_index == self.positions_count:
+            return self.get_correct_sorted_combination(history)
+
         for i in range(self.change_index, self.positions_count):
             self.sorted_combination[i] += 1
         
-        return self.get_correct_sorted_combination(history)
+        comb = self.sorted_combination.copy()
+        random.shuffle(comb)
+        return comb
