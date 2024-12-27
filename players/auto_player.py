@@ -9,31 +9,24 @@ class AutoPlayer:
         self.sorted_combination = [1] * positions_count
         self.change_index = 0
         self.permutations = None
-        self.invalid_permutations = []
 
     def get_correct_sorted_combination(self, history):
         if self.permutations is None:
             self.permutations = permutations(self.sorted_combination)
-            self.valid_permutations = [True] * math.factorial(self.positions_count)
         
-        for i, permutation in enumerate(self.permutations):
-            if i in self.invalid_permutations:
-                continue
-            
+        for permutation in self.permutations:
             valid = True
             for h in history:
-                sequence, correct_positions, correct_colors = h[0], h[1][0], h[1][1]
+                sequence, correct_positions = h[0], h[1][0]
 
                 correct_positions_count = sum(1 for i in range(len(sequence)) if i < len(permutation) and sequence[i] == permutation[i])
 
                 if correct_positions_count != correct_positions:
-                    self.invalid_permutations.append(i)
                     valid = False
                     break
             
             if valid:
                 return permutation
-
         return None
                
 
