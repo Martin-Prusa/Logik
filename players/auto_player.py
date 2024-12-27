@@ -1,5 +1,4 @@
 import random
-import math
 from itertools import permutations
 
 class AutoPlayer:
