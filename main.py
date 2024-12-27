@@ -40,11 +40,11 @@ def main():
     player = None
     if player_type == 1:
         player = Player()
-        logik = Logik(player, colors_count, positions_count, debug=True)
+        logik = Logik(player, colors_count, positions_count, debug=False)
     else:
         printer.print(f"Zadej tajnou kombinaci s {positions_count} pozicemi oddělenými mezerou: (platné hodnoty 1-{colors_count})")
         secret = reader.read_combination(positions_count, colors_count)
-        logik = Logik(AutoPlayer(), colors_count, positions_count, secret)
+        logik = Logik(AutoPlayer(positions_count, colors_count), colors_count, positions_count, secret)
 
     game_start = time()
     while not logik.win:
