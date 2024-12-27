@@ -7,7 +7,16 @@ from time import time
 
 def load_game_parameters(reader, printer):
     printer.print_line()
-    printer.print_highlighted('Hra Logic')
+    printer.print_highlighted(r"""
+  _                 _ _    
+ | |               (_) |   
+ | |     ___   __ _ _| | __
+ | |    / _ \ / _` | | |/ /
+ | |___| (_) | (_| | |   < 
+ |______\___/ \__, |_|_|\_\
+               __/ |       
+              |___/        
+""")
     printer.print_line()
     printer.print("Zadej počet pozic (N): (default 5)")
     positions_count = reader.read_number_with_default_value(5)
