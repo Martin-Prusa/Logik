@@ -3,6 +3,7 @@ from players.player import Player
 from players.auto_player import AutoPlayer
 from printer import ConsolePrinter
 from reader import ConsoleReader
+from time import time
 
 def load_game_parameters(reader, printer):
     printer.print_line()
@@ -30,11 +31,28 @@ def main():
     player = None
     if player_type == 1:
         player = Player()
-        logik = Logik(player, colors_count, positions_count)
+        logik = Logik(player, colors_count, positions_count, debug=True)
     else:
         printer.print(f"Zadej tajnou kombinaci s {positions_count} pozicemi oddělenými mezerou: (platné hodnoty 1-{colors_count})")
         secret = reader.read_combination(positions_count, colors_count)
         logik = Logik(AutoPlayer(), colors_count, positions_count, secret)
+
+    game_start = time()
+    while not logik.win:
+        printer.print_line()
+        printer.print_game(logik.history)
+        printer.print_line()
+        if player_type == 1:
+            printer.print(f"Zadej kombinaci s {positions_count} pozicemi oddělenými mezerou: (platné hodnoty 1-{colors_count})")
+            player.set_next_combination(reader.read_combination(positions_count, colors_count))
+        logik.next_turn()
+
+    printer.print_line()
+    printer.print("Vyhrál jsi!" if player_type == 1 else "Počítač uhoidl tvou kombinaci")
+    printer.print(f"Tajná kombinace byla: {" ".join([str(i) for i in logik.secret])}")
+    printer.print(f"Počet pokusů: {len(logik.history)}")
+    printer.print(f"Doba hraní: {time() - game_start:.2f} s")
+    printer.print_line()
 
 
 if __name__ == '__main__':
