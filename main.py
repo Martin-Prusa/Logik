@@ -57,10 +57,13 @@ def main():
         logik.next_turn()
 
     printer.print_line()
+    printer.print_game(logik.history)
+    printer.print_line()
+    printer.print_line()
     printer.print("Vyhrál jsi!" if player_type == 1 else "Počítač uhoidl tvou kombinaci")
     printer.print(f"Tajná kombinace byla: {" ".join([str(i) for i in logik.secret])}")
     printer.print(f"Počet pokusů: {len(logik.history)}")
-    printer.print(f"Doba hraní: {time() - game_start:.2f} s")
+    printer.print(f"Doba hraní: {time() - game_start} s")
     printer.print_line()
 
 

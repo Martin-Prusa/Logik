@@ -13,4 +13,4 @@ class ConsolePrinter:
             print(f"{round_number:2}: ", end='')
             for color in guess[0]:
                 print(f"{color: 2}", end=' ')
-            print(f" | {guess[1][0]: 2}, {guess[1][1]: 2}   (správné pozice, správné barvy)")
+            print(f" | P{guess[1][0]: 2} B{guess[1][1]: 2}")

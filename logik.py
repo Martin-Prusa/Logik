@@ -26,8 +26,7 @@ class Logik:
 
     def next_turn(self):
         combination = self.player.get_next_combination(history=self.history)
-        print(combination is None)
-
+        
         assert combination is not None, "Není nastavena kombinace"
         assert len(combination) == len(self.secret), "Chybný počet pozic"
         assert not self.win, "Hra skončila"
