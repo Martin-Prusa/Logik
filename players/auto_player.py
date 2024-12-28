@@ -40,6 +40,9 @@ class AutoPlayer:
 
         for i in range(self.change_index, self.positions_count):
             self.sorted_combination[i] += 1
+
+        if self.sorted_combination[-1] == self.colors_count:
+            return self.get_correct_sorted_combination(history)
         
         comb = self.sorted_combination.copy()
         random.shuffle(comb)
