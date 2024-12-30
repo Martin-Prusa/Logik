@@ -5,7 +5,30 @@ from printer import ConsolePrinter
 from reader import ConsoleReader
 from time import time
 
+"""
+Hra Logic (Mastermind)
+Martin Průša
+Zimní semestr 2024/2025
+Programování 1
+"""
+
 def load_game_parameters(reader, printer):
+    """
+        Funkce pro načtení základních parametrů hry a vypsání úvodní obrazovky
+        Parametry:
+            reader - instance třídy ConsoleReader
+            printer - instance třídy ConsolePrinter
+
+        Returns:
+            tuple (počet_pozic, počet_barev, typ hráče)
+
+            Počet pozic od 1 do 20
+            Počet barev od 2 do 20
+            Typ hráče 1 nebo 2
+                - 1 = Hráč hádající
+                - 2 = Hráč vybírající kombinaci
+
+    """
     printer.print_line()
     printer.print_highlighted(r"""
   _                 _ _    
@@ -31,6 +54,9 @@ def load_game_parameters(reader, printer):
     return positions_count, colors_count, player_type
 
 def main():
+    """
+        Hlavní funkce programu
+    """
     printer = ConsolePrinter()
     reader = ConsoleReader(printer)
 

@@ -1,8 +1,20 @@
 class ConsoleReader:
+    """
+        Třída pro čtení vstupu z konzole
+    """
+
     def __init__(self, printer):
+        """
+            Konstruktor třídy
+            Parametry:
+                printer - instance tiskárny (např. třídy ConsolePrinter)
+        """
         self.printer = printer
     
     def read_number(self):
+        """
+            Metoda pro načtení celého čísla ze vstupu
+        """
         while True:
             user_input = input()
             try:
@@ -12,6 +24,15 @@ class ConsoleReader:
                 self.printer.print("Neplatný vstup, prosím zadejte číslo.")
 
     def read_number_with_default_value(self, default, min_value=None, max_value=None):
+        """
+            Metoda pro načtení celého čísla ze vstupu s možností nastavení výchozí hodnoty a rozsahu povolených hodnot
+            Parametry:
+                default - výchozí hodnota
+                min_value - minimální hodnota
+                max_value - maximální hodnota
+            Returns:
+                int - načtené číslo
+        """
         while True:
             user_input = input()
             if user_input == '':
@@ -26,6 +47,12 @@ class ConsoleReader:
                 self.printer.print("Neplatný vstup, zadejte číslo.")
 
     def read_combination(self, positions_count, colors_count):
+        """
+            Metoda pro načtení posloupnoti čísel ze vstupu. Posloupnost může obsahovat pouze čísla v rozsahu 1-colors_count.
+            Parametry:
+                positions_count - počet pozic (délka posloupnosti)
+                colors_count - počet barev (maximální hodnota v posloupnosti)
+        """
         while True:
             user_input = input()
             secret = user_input.split()
