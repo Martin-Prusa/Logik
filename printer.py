@@ -5,7 +5,7 @@ class ConsolePrinter:
 
     def print(self, message):
         """
-            Vytiskne textovou zprávu
+            Vytiskne text
             Parametry:
                 message - string
         """
@@ -19,7 +19,7 @@ class ConsolePrinter:
 
     def print_highlighted(self, message):
         """
-            Vytiskne textovou zprávu tučně
+            Vytiskne text tučně
             Parametry:
                 message - string
         """

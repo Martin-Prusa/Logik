@@ -16,10 +16,19 @@ class Logik:
                 secret: tajná kombinace (None=generuje se náhodně)
                 debug: výpis tajné kombince (False=nevypisuje se, True=vypisuje se)
         """
+
+        # Hráč
         self.player = player
+
+        # Počet barev
         self.colors_count = colors_count
+
+        # Počet pozic
         self.positions_count = positions_count
+
+        # Tajná kombinace
         self.secret = self.generate_secret() if secret is None else secret
+
         if debug:
             print(self.secret)
 

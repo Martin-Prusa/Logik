@@ -1,6 +1,6 @@
 class Player:
     """
-        Třída reprezentující hráče hry Mastermind.
+        Třída reprezentující hádajícího hráče hry Mastermind.
     """
 
     def __init__(self):
