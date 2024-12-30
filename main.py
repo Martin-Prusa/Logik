@@ -72,6 +72,8 @@ def main():
         secret = reader.read_combination(positions_count, colors_count)
         logik = Logik(AutoPlayer(positions_count, colors_count), colors_count, positions_count, secret)
 
+    printer.print_line()
+    printer.print("Hodnocení hry: P - počet barev na sprácných místech, B - počet správných barev na špatných místech")
     game_start = time()
     while not logik.win:
         if player_type == 1:
